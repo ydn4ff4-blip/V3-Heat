@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heat Pro — FINAL</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0b1220">
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="row" style="align-items:center;gap:10px">
+      <div style="font-weight:900;font-size:20px">Heat Pro — FINAL</div>
+      <span id="statusBadge" class="badge ok">OK</span>
+      <span class="tag timer" id="spinTimer">T:0s</span>
+    </div>
+    <div class="controls">
+      <button class="iconBtn" id="btnUndo">↩︎ Undo</button>
+      <button class="iconBtn" id="btnReset">Reset</button>
+      <button class="iconBtn" id="btnCSV">Export CSV</button>
+      <button class="iconBtn" id="btnJSON">Export JSON</button>
+      <button class="iconBtn" id="btnSettings">⚙️ Settings</button>
+    </div>
+  </div>
+
+  <div class="grid cols-2" style="margin-top:10px">
+    <div class="card">
+      <div class="bigStatus">
+        <div class="row" style="gap:8px;align-items:center">
+          <span class="bigText" id="heatLabel">COLD</span>
+          <span class="betGuide" id="betGuide">Turun Bet ⬇️</span>
+        </div>
+        <div class="row">
+          <span class="badge hot">HOT</span>
+          <span class="badge warm">WARM</span>
+          <span class="badge cold">COLD</span>
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="box"><div class="hint">Heat</div><div class="num" id="kHeat">0</div></div>
+        <div class="box"><div class="hint">Dead</div><div class="num" id="kDead">0</div></div>
+        <div class="box"><div class="hint">BB</div><div class="num" id="kBB">0</div></div>
+        <div class="box"><div class="hint">Dead Streak</div><div class="num" id="kDeadStreak">0</div></div>
+      </div>
+
+      <div class="btnbar">
+        <div class="btn" id="bWin">Win / Connect</div>
+        <div class="btn warn" id="bLose">Lose (Dead)</div>
+        <div class="btn alt" id="bTumble">Tumble +1</div>
+        <div class="btn alt" id="bScatter">Scatter +1</div>
+        <div class="btn alt" id="bMulti">Multiplier +1</div>
+        <div class="btn" id="bEnd">End Spin</div>
+        <div class="btn" id="bFSProfit">FS Profit +1</div>
+        <div class="btn warn" id="bFSLoss">FS Loss +1</div>
+        <div class="btn" id="bReset2">Reset</div>
+        <div class="btn" id="bClear">Clear History</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Ringkasan <span id="winLen">70</span> spin terakhir</div>
+      <div class="summary">
+        <div class="box"><div class="hint">Win-rate</div><div class="num" id="sumWR">0%</div></div>
+        <div class="box"><div class="hint">Avg Tumble</div><div class="num" id="sumAT">0.0</div></div>
+        <div class="box"><div class="hint">Scatter freq</div><div class="num" id="sumSF">0%</div></div>
+      </div>
+      <hr>
+      <div class="table">
+        <table id="logTable">
+          <thead><tr><th>#</th><th>W</th><th>T</th><th>S</th><th>Time</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>Offline-ready PWA • Data tersimpan di perangkat • v3</footer>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal" id="settingsModal">
+  <div class="inner">
+    <h3>Settings</h3>
+    <div class="grid2">
+      <label>Ambang WARM ≥ <input type="number" class="input" id="setWarm" min="1" value="4"></label>
+      <label>Ambang HOT ≥ <input type="number" class="input" id="setHot" min="1" value="7"></label>
+      <label>Ambang COLD (Dead) ≥ <input type="number" class="input" id="setCold" min="1" value="12"></label>
+      <label>BB minimum ≥ <input type="number" class="input" id="setBB" min="1" value="2"></label>
+      <label>Tumble besar ≥ <input type="number" class="input" id="setTB" min="1" value="5"></label>
+      <label>Window ringkasan (spin) <input type="number" class="input" id="setWinLen" min="10" value="70"></label>
+    </div>
+    <hr>
+    <div class="switch"><input type="checkbox" id="setHaptics" checked> <label for="setHaptics">Haptics / Suara</label></div>
+    <div class="switch"><input type="checkbox" id="setBetGuide" checked> <label for="setBetGuide">Tampilkan Bet Guide</label></div>
+    <div class="row" style="justify-content:flex-end;margin-top:10px">
+      <button class="iconBtn" id="btnCloseSet">Tutup</button>
+      <button class="iconBtn" id="btnSaveSet">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
